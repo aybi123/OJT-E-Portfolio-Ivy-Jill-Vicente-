@@ -391,25 +391,11 @@ background: rgba(59, 130, 246, 0.25); /* 💙 light blue tint */
   }
 
   /* OJT IMAGES STACK */
-@media (max-width: 768px){
-
-  .ojt-images{
-    flex-direction: column;
-    margin-top: -120px;
-    gap: 15px;
-  }
-
-  /* 🔥 TAMANG SIZE */
-  .ojt-images img.small{
-    width: 80px;
-    height: 80px;
-  }
-
-  .ojt-images img.big{
-    width: 120px;
-    height: 120px;
-  }
-
+.ojt-images{
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
   /* CONTENT SPACING */
   .content{
