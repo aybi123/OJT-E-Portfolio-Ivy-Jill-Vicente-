@@ -383,19 +383,29 @@ background: rgba(59, 130, 246, 0.25); /* 💙 light blue tint */
 /* ================= MOBILE VIEW ================= */
 @media (max-width: 768px){
 
-  /* HERO TEXT */
-  .hero{
-    font-size:14px;
-    padding:20px;
-    text-align:center;
+  .ojt-images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap; /* 🔥 important */
   }
 
-  /* OJT IMAGES STACK */
-.ojt-images{
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+  .ojt-images img{
+    flex-shrink: 0; /* 🔥 hindi magsshrink */
+  }
+
+  .ojt-images img.small{
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .ojt-images img.big{
+    width: 100px !important;
+    height: 100px !important;
+  }
+
 }
   /* CONTENT SPACING */
   .content{
