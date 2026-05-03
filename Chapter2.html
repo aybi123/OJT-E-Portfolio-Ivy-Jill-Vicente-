@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+  height: 100vh;
+  background: url('images/bg.jpg') center/cover no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+   pointer-events: none;
+}
+
+
+.topbar{
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:5;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  height:100%;
+  background:#f1f5f9;
+  padding:20px;
+  transition:.4s;
+  z-index:9999;
+  overflow-y:auto;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.profile{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.profile img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:4px solid #3b82f6;
+}
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+}
+
+/* link style */
+.menu-header a{
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  flex:1;
+}
+/* arrow clickable area */
+.arrow{
+  cursor:pointer;
+  padding:0 10px;
+  user-select:none;
+}
+/* MENU */
+.menu > a{
+  display:block;
+  padding:10px;
+  text-decoration:none;
+  color:#333;
+}
+
+.menu > a:hover{
+  background:#3b82f6;
+  color:#fff;
+}
+
+.sub-menu{
+  display:none;
+  padding-left:20px;
+}
+
+.menu.active .sub-menu{
+  display:block;
+}
+
+.sub-menu a{
+  display:block;
+  padding:6px 10px;
+  font-size:14px;
+  text-decoration:none;
+  color:#333;
+}
+
+/* CLOSE BTN */
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:15px;
+  cursor:pointer;
+}
+/* =========================
+   SECTION STYLING
+========================= */
+section {
+    position: relative;
+    z-index: 2;
+    margin: 80px auto;
+    padding: 90px 60px;
+    max-width: 1100px;
+    width: 90%;
+
+    /* Glass effect only */
+    background: #BBDEFB;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 35px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    overflow: hidden;
+}
+/* First Section spacing */
+section:first-of-type {
+    margin-top: 12vh;
+}
+
+/* =========================
+   CHAPTER CONTENT
+========================= */
+.chapter-section {
+    min-height: auto;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.content-container {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+}
+
+/* Main Title */
+.content-container h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    color: #000000;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1.3;
+}
+
+/* Subtitle */
+.content-container h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    text-align: center;
+    color: #0D47A1;
+    margin-bottom: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.content-container h2::after {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 5px;
+    margin: 18px auto 0;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ffd700, #ff9800);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Paragraph */
+.content-container p {
+    font-size: 1.2rem;
+    line-height: 2.1;
+    color: #000000;
+    text-align: justify;
+    margin: 0 auto 50px;
+    padding: 0 15px;
+    max-width: 950px;
+    text-shadow:
+}
+
+.skills-container {
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.skill-item {
+    margin-bottom: 15px;
+}
+
+.skill-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.skill-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.skill-content {
+    display: none;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-left: 5px solid #2575fc;
+    border-radius: 0 0 10px 10px;
+    margin-top: 5px;
+    animation: fadeIn 0.4s ease;
+    color: #333;
+    line-height: 1.6;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.objective-box {
+    position: relative;
+    margin : 20px;
+    padding: 25px 30px;
+
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    /* colored left border */
+    border-left: 6px solid #2575fc;
+}
+
+/* optional hover effect (nice touch) */
+.objective-box:hover {
+    transform: translateY(-3px);
+    transition: 0.3s ease;
+}
+.schedule-card {
+    max-width: 420px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    font-family: 'Poppins', sans-serif;
+}
+.org-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+</style>
+</head>
+
+<body>
+<!-- HERO -->
+<div class="hero">
+  <div class="topbar" onclick="toggleSidebar()">☰</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+
+  <div class="profile">
+    <img src="images/dp.jpg" alt="Profile Picture" id="sidebarProfile">
+    <h2>Ivy Jill Vicente</h2>
+    <p>BSIT Student Intern</p>
+  </div>
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+<!-- TITLE PAGE ONLY -->
+<div class="menu">
+  <a href="index.html" class="title-page">🏠 Title Page</a>
+</div>
+  <!-- CHAPTER I -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+	<a href="chapter1.html #importance">A. Importance of Internship</a>
+	<a href="chapter1.html #objectives">B. Objectives of Internship</a>
+	<a href="chapter1.html #timeplace">C. Time and Place</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER II -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter2.html">📁 Chapter II</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+      <a href="chapter2.html#company">1. Nature of Agency</a>
+      <a href="chapter2.html#MVG">2. Mission/Vision/Goals</a>
+	  <a href="chapter2.html#History">3. History / Background</a>
+	  <a href="chapter2.html#org">4.Organizational Structure</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER III -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="chapter3.html">📁 Chapter III</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="chapter3.html#work">Weekly Reports</a>
+      <a href="chapter3.html#skills">Daily Time Record</a>
+	  <a href="chapter3.html#work">Internship Progress Report</a>
+      <a href="chapter3.html#skills">Internship Analysis Report</a>
+    </div>
+  </div>
+  <!-- CHAPTER IV -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter4.html">📁 Chapter IV</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="chapter4.html#work">A. Student InternshipEvaluation Form</a>
+    </div>
+  </div>
+  <div class="menu">
+  <a href="append.html" class="title-page">🔗 Appendices</a>
+</div>
+</div>
+
+<section class="chapter-section" id="company">
+    <div class="content-container">
+        <h1>CHAPTER II - Company Profile</h1>
+        <h2>A. Nature of Agency</h2>
+ 
+        <p>
+            The importance of internship is to provide students with actual experience in a real work environment related to their chosen field. Through my internship at the Scholarship Office, I was able to gain valuable knowledge, practical skills, and professional experience that enhanced my understanding of office operations and student services. It allowed me to apply the theories and concepts I learned in school to actual workplace situations.
+            <br><br>
+            During my training, I assisted in organizing scholarship records, processing documents, accommodating student inquiries, and supporting the daily operations of the office. This experience helped me understand the importance of accuracy, confidentiality, and excellent customer service when dealing with students and scholarship-related concerns.
+        </p>
+
+
+    </div>
+</section>
+<section class="chapter-section" id="MVG">
+    <div class="content-container">
+
+        <h2>B. MISSION, VISION, AND GOALS</h2>
+
+<div class="objective-box">
+<b>MISSION</b><br>
+OMSC is committed to produce intellectual and human capital by developing excellent graduates through outcomes-based instruction, relevant research, responsive technical advisory services, community engagement, and sustainable production.
+</div>
+<div class="objective-box">
+<b>VISION</b><br>
+A premier higher education institution that develops globally competitive, locally responsive, innovative professionals and life-long learners.
+</div>
+<div class="objective-box">
+<b>CORE VALUES</b><br>
+<li><b>Obedience to God:</b> Adhering to spiritual teachings and seeing God's presence in service.</li>
+<li><b>Mindfulness:</b> Being gender-sensitive, responsible, and attentive to stakeholders.</li>
+<li><b>Service-Orientedness:</b> Providing and improving services for clients.</li>
+<li><b>Commitment:</b> Showing dedication and resilience to the institution.</li>
+<li><b>Integrity & Ingenuity:</b> Practicing honesty and innovative thinking.</li>
+<li><b>Accountability:</b> Taking responsibility with transparency and trust.</li>
+<li><b>Nationalism:</b> Contributing to community and national development.</li>
+</div>
+<div class="objective-box">
+<b>GOALS</b><br>
+1. Provide excellent academic programs
+2. Achieve excellent board performance
+3. Improve Faculty Development Program
+4. Enhance Student Development Program
+5. Produce quality research
+6. Provide need-based technical advisory services
+7. Intensify the operation of IGPs to increase revenue
+8. Restructure the organizational system
+9. Exhibit good governance and transparency
+10.Strengthen Human Resource Development
+		</div>
+    </div>
+</section>
+<section class="chapter-section" id="History">
+    <div class="content-container">
+
+        <h2>C. History / Background</h2>
+
+<div class="objective-box">
+    <p>
+		&nbsp;&nbsp;&nbsp; Occidental Mindoro State College (OMSC) started in 1966 as San Jose Barrio High School. 
+        The school was temporarily housed in a ten-room PTA (Parents Teachers Association) building 
+        inside the campus of the public elementary school in Poblacion, San Jose. At that time, 
+        there was no library room, and students borrowed books from Ms. Arsenia Santos and 
+        Ms. Avelina Noble.
+    <br></br>
+        &nbsp;&nbsp;&nbsp; Two years later, a ten-room Marcos-type prefabricated building was constructed within 
+        the former Bureau of Lands compound. However, there was still no designated library, 
+        and students continued borrowing books from school personnel.
+	<br></br>
+        &nbsp;&nbsp;&nbsp; The school later became San Jose Municipal High School as it was funded by the municipal government. 
+        In 1971, it was elevated to a national high school. During School Year 1972–1973, 
+        a formal library was finally established at San Jose National High School (SJNHS), 
+        with Ms. Pacita M. Candelario appointed as librarian.
+    <br></br>
+       &nbsp;&nbsp;&nbsp; In 1974–1975, a new administration building was constructed, providing a more spacious library. 
+        Additional books, encyclopedias, newspapers, and magazines were acquired, along with 
+        improved furniture and facilities.
+    <br></br>
+        &nbsp;&nbsp;&nbsp; In 1983, through Batas Pambansa Blg. 531, the school was elevated into a national college, 
+        now known as Occidental Mindoro State College (OMSC). This led to the expansion of library 
+        resources to support college-level education.
+    <br></br>
+        &nbsp;&nbsp;&nbsp; Over the years, leadership changes contributed to the development of the institution and its 
+        library services. New buildings were constructed, more learning materials were acquired, 
+        and the library system expanded across campuses, including Labangan, Mamburao, Murtha, and Lubang.
+    <br></br>
+        &nbsp;&nbsp;&nbsp; The library continued to grow with the increasing student population, offering both physical 
+        and digital resources such as books, e-books, and e-journals. By 2019, the library had 
+        accumulated more than 43,000 volumes of books serving students across different campuses.
+    <br></br>
+       &nbsp;&nbsp;&nbsp; Today, the OMSC Library remains an essential part of the institution, supporting academic 
+        excellence and providing quality learning resources to students and faculty.
+    </p><br></br>
+</div>
+</section>
+
+<section class="chapter-section" id="org">
+    <div class="content-container">
+        <h2>D. Organizational Structure</h2>
+
+        <div class="objective-box">
+            <img src="images/org.PNG" 
+                 alt="Organizational Structure" 
+                 class="org-image">
+        </div>
+    </div>
+</section>
+
+
+
+
+</div>
+
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+document.querySelectorAll(".menu > a").forEach(item=>{
+  item.addEventListener("click", function(e){
+    let parent = this.parentElement;
+    parent.classList.toggle("active");
+  });
+});
+</script>
+<script>
+function toggleMenu(el){
+  el.closest(".menu").classList.toggle("active");
+}
+</script>
+<script>
+function toggleContent(id) {
+    const content = document.getElementById(id);
+
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
+}
+</script>
+</body>
+</html> 

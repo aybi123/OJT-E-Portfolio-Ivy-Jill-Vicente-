@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#e0f2fe,#f8fafc,#dbeafe);
+    color:#1e293b;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    background:
+        linear-gradient(rgba(15,23,42,0.55), rgba(15,23,42,0.55)),
+        url('images/bg.jpg') center/cover no-repeat;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1;
+}
+
+.topbar{
+    position:fixed;
+    top:25px;
+    left:25px;
+    z-index:10000;
+    color:#fff;
+    font-size:32px;
+    cursor:pointer;
+    background:rgba(255,255,255,0.15);
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    transition:.3s;
+}
+
+.topbar:hover{
+    transform:scale(1.08);
+    background:rgba(255,255,255,0.25);
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-320px;
+    width:320px;
+    height:100%;
+    background:linear-gradient(180deg,#ffffff,#f8fafc);
+    padding:25px;
+    transition:.4s ease;
+    z-index:9999;
+    overflow-y:auto;
+    box-shadow:10px 0 40px rgba(0,0,0,0.15);
+}
+
+.sidebar.active{
+    left:0;
+}
+
+.profile{
+    text-align:center;
+    margin-bottom:35px;
+    padding-bottom:25px;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.profile img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    border:5px solid #3b82f6;
+    object-fit:cover;
+    box-shadow:0 10px 30px rgba(59,130,246,0.35);
+    margin-bottom:15px;
+}
+
+.profile h2{
+    font-size:1.5rem;
+    color:#0f172a;
+    margin-bottom:5px;
+}
+
+.profile p{
+    color:#64748b;
+    font-size:.95rem;
+}
+
+.close-btn{
+    position:absolute;
+    top:18px;
+    right:20px;
+    font-size:22px;
+    cursor:pointer;
+    color:#475569;
+    transition:.3s;
+}
+
+.close-btn:hover{
+    color:#ef4444;
+    transform:rotate(90deg);
+}
+
+.menu{
+    margin-bottom:12px;
+    border-radius:16px;
+    overflow:hidden;
+    background:#ffffff;
+    box-shadow:0 4px 15px rgba(0,0,0,0.05);
+}
+
+.menu-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.menu-header a,
+.menu > a{
+    flex:1;
+    padding:16px 18px;
+    text-decoration:none;
+    color:#1e293b;
+    font-weight:500;
+    transition:.3s;
+}
+
+.menu-header a:hover,
+.menu > a:hover{
+    background:#3b82f6;
+    color:#fff;
+}
+
+.arrow{
+    padding:16px 20px;
+    cursor:pointer;
+    color:#3b82f6;
+    font-size:18px;
+    transition:.3s;
+    user-select:none;
+}
+
+.menu.active .arrow{
+    transform:rotate(180deg);
+}
+
+.sub-menu{
+    display:none;
+    background:#f8fafc;
+}
+
+.menu.active .sub-menu{
+    display:block;
+    animation:fadeDown .4s ease;
+}
+
+.sub-menu a{
+    display:block;
+    padding:13px 25px;
+    text-decoration:none;
+    color:#475569;
+    font-size:.95rem;
+    transition:.3s;
+    border-top:1px solid #e2e8f0;
+}
+
+.sub-menu a:hover{
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding-left:35px;
+}
+
+@keyframes fadeDown{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* SECTION */
+section{
+    position:relative;
+    z-index:2;
+    max-width:1150px;
+    width:92%;
+    margin:90px auto;
+    padding:70px 50px;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(18px);
+    border-radius:30px;
+    box-shadow:
+        0 20px 50px rgba(15,23,42,0.15),
+        0 5px 20px rgba(59,130,246,0.08);
+    border:1px solid rgba(255,255,255,0.7);
+}
+
+section:first-of-type{
+    margin-top:12vh;
+}
+
+.chapter-section{
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* TITLES */
+.content-container h1{
+    font-size:clamp(2.4rem,5vw,4rem);
+    text-align:center;
+    color:#0f172a;
+    margin-bottom:20px;
+    letter-spacing:3px;
+}
+
+.content-container h2{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    text-align:center;
+    color:#1d4ed8;
+    margin-bottom:45px;
+    position:relative;
+}
+
+.content-container h2::after{
+    content:'';
+    width:100px;
+    height:5px;
+    background:linear-gradient(90deg,#3b82f6,#06b6d4);
+    display:block;
+    margin:18px auto 0;
+    border-radius:50px;
+}
+
+/* PARAGRAPH */
+.content-container p{
+    font-size:1.1rem;
+    line-height:2;
+    text-align:justify;
+    color:#334155;
+    max-width:950px;
+    margin:0 auto 45px;
+}
+
+/* SKILLS */
+.skills-container{
+    max-width:850px;
+    margin:0 auto;
+}
+
+.skill-item{
+    margin-bottom:18px;
+}
+
+.skill-btn{
+    width:100%;
+    padding:18px 25px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    color:#fff;
+    font-size:1.05rem;
+    text-align:left;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(37,99,235,0.25);
+}
+
+.skill-btn:hover{
+    transform:translateY(-4px);
+}
+
+.skill-content{
+    display:none;
+    margin-top:10px;
+    padding:22px 25px;
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    border-radius:0 0 18px 18px;
+    color:#475569;
+    line-height:1.8;
+    animation:fadeDown .4s ease;
+}
+
+/* OBJECTIVE BOX */
+.objective-box{
+    margin:20px auto;
+    padding:28px 30px;
+    background:#ffffff;
+    border-radius:22px;
+    border-left:6px solid #2563eb;
+    box-shadow:0 12px 30px rgba(0,0,0,0.08);
+    font-size:1.1rem;
+    line-height:1.8;
+    color:#334155;
+    transition:.3s;
+}
+
+.objective-box:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 35px rgba(37,99,235,0.15);
+}
+
+/* SCHEDULE */
+.schedule-title{
+    font-size:1.5rem;
+    font-weight:700;
+    color:#1d4ed8;
+    margin-bottom:18px;
+}
+
+.schedule-day{
+    font-size:1.1rem;
+    color:#475569;
+    margin-top:15px;
+}
+
+.schedule-time{
+    font-size:1.4rem;
+    font-weight:700;
+    color:#0f172a;
+    margin-top:8px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    section{
+        padding:50px 25px;
+        width:95%;
+    }
+
+    .sidebar{
+        width:290px;
+        left:-290px;
+    }
+
+    .content-container h1{
+        font-size:2rem;
+        letter-spacing:1px;
+    }
+
+    .content-container h2{
+        font-size:1.5rem;
+    }
+
+    .content-container p{
+        font-size:1rem;
+        line-height:1.8;
+    }
+
+    .skill-btn{
+        font-size:1rem;
+        padding:16px 20px;
+    }
+
+    .objective-box{
+        padding:22px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<!-- HERO -->
+<div class="hero">
+  <div class="topbar" onclick="toggleSidebar()">☰</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+
+  <div class="profile">
+    <img src="images/dp.jpg" alt="Profile Picture" id="sidebarProfile">
+    <h2>Ivy Jill Vicente</h2>
+    <p>BSIT Student Intern</p>
+  </div>
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+<!-- TITLE PAGE ONLY -->
+<div class="menu">
+  <a href="index.html" class="title-page">🏠 Title Page</a>
+</div>
+  <!-- CHAPTER I -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+	<a href="chapter1.html #importance">A. Importance of Internship</a>
+	<a href="chapter1.html #objectives">B. Objectives of Internship</a>
+	<a href="chapter1.html #timeplace">C. Time and Place</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER II -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter2.html">📁 Chapter II</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+      <a href="chapter2.html#company">1. Nature of Agency</a>
+      <a href="chapter2.html#MVG">2. Mission/Vision/Goals</a>
+	  <a href="chapter2.html#History">3. History / Background</a>
+	  <a href="chapter2.html#org">4.Organizational Structure</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER III -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="chapter3.html">📁 Chapter III</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="chapter3.html#work">Weekly Reports</a>
+      <a href="chapter3.html#skills">Daily Time Record</a>
+	  <a href="chapter3.html#work">Internship Progress Report</a>
+      <a href="chapter3.html#skills">Internship Analysis Report</a>
+    </div>
+  </div>
+  <!-- CHAPTER IV -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter4.html">📁 Chapter IV</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="chapter4.html#work">A. Student InternshipEvaluation Form</a>
+    </div>
+  </div>
+  <div class="menu">
+  <a href="append.html" class="title-page">🔗 Appendices</a>
+</div>
+</div>
+
+<section class="chapter-section" id="importance">
+    <div class="content-container">
+        <h1>CHAPTER I - INTRODUCTION</h1>
+        <h2>A. IMPORTANCE OF INTERNSHIP</h2>
+
+        <p>
+            The importance of internship is to provide students with actual experience in a real work environment related to their chosen field. Through my internship at the Scholarship Office, I was able to gain valuable knowledge, practical skills, and professional experience that enhanced my understanding of office operations and student services. It allowed me to apply the theories and concepts I learned in school to actual workplace situations.
+            <br><br>
+            During my training, I assisted in organizing scholarship records, processing documents, accommodating student inquiries, and supporting the daily operations of the office. This experience helped me understand the importance of accuracy, confidentiality, and excellent customer service when dealing with students and scholarship-related concerns.
+        </p>
+
+	<div class="skills-container">
+    <div class="skill-item">
+        <button class="skill-btn" onclick="toggleContent('responsibility')">
+            ▼ Responsibility
+        </button>
+        <div id="responsibility" class="skill-content">
+            Completing assigned tasks accurately and on time.
+        </div>
+    </div>
+
+    <div class="skill-item">
+        <button class="skill-btn" onclick="toggleContent('detail')">
+            ▼ Attention to Detail
+        </button>
+        <div id="detail" class="skill-content">
+            Carefully reviewing and organizing scholarship documents and records.
+        </div>
+    </div>
+
+    <div class="skill-item">
+        <button class="skill-btn" onclick="toggleContent('communication')">
+            ▼ Communication
+        </button>
+        <div id="communication" class="skill-content">
+            Assisting students and communicating effectively with office staff.
+        </div>
+    </div>
+
+    <div class="skill-item">
+        <button class="skill-btn" onclick="toggleContent('administrative')">
+            ▼ Administrative Skills
+        </button>
+        <div id="administrative" class="skill-content">
+            Performing clerical tasks, filing documents, and managing office records efficiently.
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="chapter-section" id="objectives">
+    <div class="content-container">
+
+        <h2>B. OBJECTIVES OF INTERNSHIP</h2>
+
+<div class="objective-box">📌 Understand the basic operations of the scholarship office.</div>
+
+<div class="objective-box">📂 Assist in document processing and filing.</div>
+
+<div class="objective-box">💻 Develop data encoding and record-keeping skills.</div>
+
+<div class="objective-box">🗣️ Improve communication skills with clients and applicants.</div>
+
+<div class="objective-box">⏱️ Enhance time management and multitasking skills.</div>
+
+    </div>
+</section>
+
+<section class="chapter-section" id="timeplace">
+    <div class="content-container">
+
+        <h2>C. TIME AND PLACE</h2>
+
+		<div class="objective-box">
+			<div class="schedule-title">🗓️ Schedule</div>
+
+			<div class="schedule-day">Monday</div>
+
+			<div class="schedule-time">7:00 AM – 6:00 PM</div>
+			
+			
+			<div class="schedule-day">Tuesday to Friday</div>
+
+			<div class="schedule-time">7:30 AM – 6:30 PM</div>
+		</div>
+				<div class="objective-box">
+			<div class="schedule-title">📍Location</div>
+			<div class="schedule-time">Scholarship Office</div>
+			<div class="schedule-day">OMSC San Jose Campus</div>			
+			<div class="schedule-day"> Rizal St., San Jose, Occidental Mindoro</div>
+		</div>
+	</div>		
+</section>
+
+
+
+
+</div>
+
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+document.querySelectorAll(".menu > a").forEach(item=>{
+  item.addEventListener("click", function(e){
+    let parent = this.parentElement;
+    parent.classList.toggle("active");
+  });
+});
+</script>
+<script>
+function toggleMenu(el){
+  el.closest(".menu").classList.toggle("active");
+}
+</script>
+<script>
+function toggleContent(id) {
+    const content = document.getElementById(id);
+
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
+}
+</script>
+</body>
+</html>
