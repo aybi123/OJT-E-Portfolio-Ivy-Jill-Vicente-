@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -18,17 +17,10 @@
 body{
   overflow-x:hidden;
 }
-@media (max-width: 768px){
 
-  .hero{
-    background-position: center top; /* 🔥 mas focus sa taas */
-    background-size: cover;
-  }
-
-}
 .hero{
   height: 100vh;
-  background: url('images/BG.jpg') center/cover no-repeat;
+  background: url('images/bg.jpg') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,47 +162,73 @@ body{
   background:#f1f5f9;
   padding:20px;
   transition:.4s;
-  z-index:20;
-   overflow-y: auto;      /* 🔥 vertical scroll */
-  overflow-x: hidden;    /* ❌ no horizontal scroll */
+  z-index:9999;
+  overflow-y:auto;
 }
 
 .sidebar.active{
   left:0;
 }
 
-.sidebar h3{
-  margin-bottom:20px;
-}
-
-.sidebar a{
-  display:block;
-  margin:15px 0;
-  text-decoration:none;
-  color:#333;
-}
 .profile{
-  text-align: center;
-  margin-bottom: 40px;
+  text-align:center;
+  margin-bottom:40px;
 }
 
 .profile img{
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #3b82f6;
-  margin-bottom: 15px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:4px solid #3b82f6;
+}
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
 }
 
-.profile h2{
-  font-size: 18px;
-  margin-bottom: 5px;
+/* link style */
+.menu-header a{
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  flex:1;
+}
+/* arrow clickable area */
+.arrow{
+  cursor:pointer;
+  padding:0 10px;
+  user-select:none;
+}
+/* MENU */
+.menu > a{
+  display:block;
+  padding:10px;
+  text-decoration:none;
+  color:#333;
 }
 
-.profile p{
-  font-size: 14px;
-  color: #94a3b8;
+.menu > a:hover{
+  background:#3b82f6;
+  color:#fff;
+}
+
+.sub-menu{
+  display:none;
+  padding-left:20px;
+}
+
+.menu.active .sub-menu{
+  display:block;
+}
+
+.sub-menu a{
+  display:block;
+  padding:6px 10px;
+  font-size:14px;
+  text-decoration:none;
+  color:#333;
 }
 
 /* CLOSE BTN */
@@ -387,114 +405,7 @@ background: rgba(59, 130, 246, 0.25); /* 💙 light blue tint */
     grid-template-columns: repeat(2, 1fr);
   }
 }
-/* ================= MOBILE VIEW ================= */
-@media (max-width: 768px){
 
-  .ojt-images{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: nowrap; /* 🔥 important */
-  }
-
-  .ojt-images img{
-    flex-shrink: 0; /* 🔥 hindi magsshrink */
-  }
-
-  .ojt-images img.small{
-    width: 70px !important;
-    height: 70px !important;
-  }
-
-  .ojt-images img.big{
-    width: 90px !important;
-    height: 90px !important;
-  }
-
-}
-  /* CONTENT SPACING */
-  .content{
-    margin-top: 60vh;
-  }
-
-  .onjob-content h1{
-    font-size: 20px;
-    letter-spacing: 2px;
-  }
-
-  .onjob-content p{
-    font-size: 12px;
-  }
-
-  /* SECTIONS */
-  .toc,
-  .acknowledgement,
-  .prayer,
-  .philosophy,
-  .career{
-    padding: 30px 20px;
-    margin: 30px 15px;
-  }
-
-  h2{
-    font-size: 18px;
-  }
-
-  h3{
-    font-size: 14px;
-  }
-
-  p, li{
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  /* APPENDIX GRID */
-  .appendix-grid{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  /* SIDEBAR */
-  .sidebar{
-    width: 260px;
-  }
-
-  /* MODAL */
-  .modal-content{
-    width: 90%;
-    padding: 15px;
-  }
-
-  .modal img{
-    width: 80px;
-  }
-
-  /* FOOTER */
-  .footer-links{
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .footer-nav h3{
-    font-size: 16px;
-  }
-
-  .footer-links span{
-    font-size: 18px;
-  }
-
-  .footer-links p{
-    font-size: 12px;
-  }
-
-  .footer-bottom{
-    font-size: 12px;
-  }
-}
 
 </style>
 
@@ -530,43 +441,62 @@ background: rgba(59, 130, 246, 0.25); /* 💙 light blue tint */
 <div class="menu">
   <a href="index.html" class="title-page">🏠 Title Page</a>
 </div>
-   <!-- CHAPTER I -->
+
+  <!-- CHAPTER I -->
   <div class="menu">
-    <a href="#">📁 Chapter I</a>
+     <div class="menu-header">
+    <a href="chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
     <div class="sub-menu">
-      <a href="#intro">A.Importance of Internship</a>
-      <a href="#background">B.Objectives of Internship</a>
-      <a href="#scope">C. Time and Place</a>
+	<a href="chapter1.html #importance">A. Importance of Internship</a>
+	<a href="chapter1.html #objectives">B. Objectives of Internship</a>
+	<a href="chapter1.html #timeplace">C. Time and Place</a>
     </div>
   </div>
 
   <!-- CHAPTER II -->
-  <div class="menu">
-    <a href="#">🏢 Chapter II</a>
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter2.html">📁 Chapter II</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
     <div class="sub-menu">
-      <a href="#company">1. Nature of Agency</a>
-      <a href="#org">2. Mission/Vision</a>
-	  <a href="#org">3. Background of the Agency</a>
-	  <a href="#org">4. Supervisor's Profile</a>
-	  <a href="#org">5. Organizational Structure</a>
+      <a href="chapter2.html#company">1. Nature of Agency</a>
+      <a href="chapter2.html#org">2. Mission/Vision</a>
+	  <a href="chapter2.html#org">3. Background of the Agency</a>
+	  <a href="chapter2.html#org">4. Supervisor's Profile</a>
+	  <a href="chapter2.html#org">5. Organizational Structure</a>
     </div>
   </div>
 
   <!-- CHAPTER III -->
   <div class="menu">
-    <a href="#">💼 Chapter III</a>
+     <div class="menu-header">
+    <a href="chapter3.html">📁 Chapter III</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
     <div class="sub-menu">
-      <a href="#work">Weekly Reports</a>
-      <a href="#skills">Daily Time Record</a>
-	  <a href="#work">Internship Progress Report</a>
-      <a href="#skills">Internship Analysis Report</a>
+      <a href="chapter3.html#work">Weekly Reports</a>
+      <a href="chapter3.html#skills">Daily Time Record</a>
+	  <a href="chapter3.html#work">Internship Progress Report</a>
+      <a href="chapter3.html#skills">Internship Analysis Report</a>
     </div>
   </div>
   <!-- CHAPTER IV -->
-  <div class="menu">
-    <a href="#">💼 Chapter IV</a>
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter4.html">📁 Chapter IV</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
     <div class="sub-menu">
-      <a href="#work">A. Student InternshipEvaluation Form</a>
+      <a href="chapter4.html#work">A. Student InternshipEvaluation Form</a>
     </div>
   </div>
   <div class="menu">
@@ -812,6 +742,11 @@ document.querySelectorAll(".menu > a").forEach(item => {
     parent.classList.toggle("active");
   });
 });
+</script>
+<script>
+function toggleMenu(el){
+  el.closest(".menu").classList.toggle("active");
+}
 </script>
 <script>
 const modal = document.getElementById("modal");
