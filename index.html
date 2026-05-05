@@ -1,1 +1,809 @@
 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+.hero{
+  height: 100vh;
+  background: url('images/BG.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  position: fixed;   /* 🔥 important */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  font-size:20px;
+}
+
+.topbar {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* OJT section */
+.ojt {
+  text-align: center;
+  padding: 10px 20px;
+}
+.onjob-content {
+  margin-top:20px;
+  text-align: center;
+  letter-spacing: 5px;
+}
+/* container */
+.ojt-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: -200px;
+}
+
+.ojt-images img {
+  width: 120px;
+  height: 120px;
+
+  object-fit: cover; /* IMPORTANT para sakto sa circle */
+
+  border-radius: 50%; /* eto ang magpapabilog */
+
+  border: none;
+  box-shadow: none;
+  background: transparent;
+
+  transition: none;
+  transform: none;
+}
+
+/* center image */
+.big {
+  width: 150px;
+  height: 150px;
+}
+.no-circle {
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  background: transparent !important;
+}
+.ojt-images img:not(.no-circle) {
+  border-radius: 50%;
+}
+/* side images */
+.small {
+  width: 120px;
+  height: 120px;
+  opacity: 0.9;
+}
+/* NAVBAR */
+.topbar{
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:5;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+
+  display:none; /* 🔥 IMPORTANT: hindi auto show */
+
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+
+.modal-content{
+  background:#eee;
+  padding:20px;
+  width:360px;
+  border-radius:20px;
+  text-align:left;
+  animation:fadeIn .5s ease;
+}
+
+.modal img{
+  width:100px;
+  border-radius:50%;
+  border:4px solid #3b82f6;
+}
+
+.modal h2{
+  margin:15px 0;
+}
+
+.modal button{
+  margin-top:20px;
+  padding:10px 20px;
+  background:#0f172a;
+  color:white;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  height:100%;
+  background:#f1f5f9;
+  padding:20px;
+  transition:.4s;
+  z-index:9999;
+  overflow-y:auto;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.profile{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.profile img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:4px solid #3b82f6;
+}
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+}
+
+/* link style */
+.menu-header a{
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  flex:1;
+}
+/* arrow clickable area */
+.arrow{
+  cursor:pointer;
+  padding:0 10px;
+  user-select:none;
+}
+/* MENU */
+.menu > a{
+  display:block;
+  padding:10px;
+  text-decoration:none;
+  color:#333;
+}
+
+.menu > a:hover{
+  background:#3b82f6;
+  color:#fff;
+}
+
+.sub-menu{
+  display:none;
+  padding-left:20px;
+}
+
+.menu.active .sub-menu{
+  display:block;
+}
+
+.sub-menu a{
+  display:block;
+  padding:6px 10px;
+  font-size:14px;
+  text-decoration:none;
+  color:#333;
+}
+
+/* CLOSE BTN */
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:15px;
+  cursor:pointer;
+}
+/* TITLE PAGE ONLY HOVER */
+.title-page{
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* hover effect only */
+.title-page:hover{
+  background: #3b82f6;
+  color: white;
+  transform: translateX(5px);
+}
+.menu{
+  margin-top: 10px;
+}
+
+/* button style */
+.menu > a{
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu > a:hover{
+  background: #3b82f6;
+  color: white;
+  
+}
+
+/* SUBMENU (HIDDEN BY DEFAULT) */
+.sub-menu{
+  display: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+/* SHOW WHEN ACTIVE */
+.menu.active .sub-menu{
+  display: block;
+}
+
+.sub-menu a{
+  display: block;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+}
+
+.sub-menu a:hover{
+  color: #3b82f6;
+}
+/* ANIMATION */
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(.8);}
+  to{opacity:1; transform:scale(1);}
+}
+.content{ 
+  position: relative;
+  z-index: 2;
+  margin-top: 70vh;
+  border-radius: 60px 60px 0 0;
+
+  overflow: hidden; /* important */
+}
+
+/* 🔥 ONE BACKGROUND FOR ALL SECTIONS ONLY */
+.content::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+background: rgba(59, 130, 246, 0.25); /* 💙 light blue tint */
+  backdrop-filter: blur(12px);          /* 🔥 blur effect */
+  -webkit-backdrop-filter: blur(12px);
+
+  z-index: -1;
+}
+
+.toc,
+.acknowledgement,
+.prayer,
+.philosophy,
+.career{
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+
+  margin: 60px auto;
+  padding: 60px 40px;
+
+  max-width: 1000px;
+
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+
+  position: relative;
+  z-index: 2;
+}
+.footer{
+  background: #0f172a;
+  color: white;
+  padding: 60px 20px 30px;
+  margin-top: auto; /* ✅ ITO ANG TAMANG FIX */
+}
+
+.footer-nav{
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.footer-nav h3{
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  color: #93c5fd;
+}
+
+.footer-links{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: auto; /* 🔥 THIS FIXES EVERYTHING */
+
+}
+
+.footer-links div{
+  padding: 15px;
+  transition: .3s;
+}
+
+.footer-links div:hover{
+  transform: translateY(-5px);
+}
+
+.footer-links span{
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.footer-links p{
+  margin-top: 5px;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.footer-bottom{
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #1e293b;
+  padding-top: 20px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+@media (max-width: 768px){
+  .footer-links{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+</style>
+
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">✖</span>
+    <center><img src="images/dp.jpg" alt="Profile Picture">
+    <h2>Student Profile</h2></center>
+    <p><b> Student Name:</b> Ivy Jill S. Vicente</p>
+	<p><b> Student ID:</b> MA22-IT-02629</p>
+    <p><b>Course & Year :</b> BSIT- 4D</p>
+    <p><b>Internship Period:</b> Jan 21 - May 07,2026</p>
+	<p><b> Agency:</b> Scholarship Office OMSC San Jose Campus</p>
+	<p><b> OJT Coordinator:</b> Rommel C. Sanqui</p>
+    <center><button onclick="enterSite()">Explore Portfolio</button></center>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+
+  <div class="profile">
+    <img src="images/dp.jpg" alt="Profile Picture" id="sidebarProfile">
+    <h2>Ivy Jill Vicente</h2>
+    <p>BSIT Student Intern</p>
+  </div>
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+<!-- TITLE PAGE ONLY -->
+<div class="menu">
+  <a href="index.html" class="title-page">🏠 Title Page</a>
+</div>
+
+  <!-- CHAPTER I -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="Chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+	<a href="Chapter1.html #importance">A. Importance of Internship</a>
+	<a href="Chapter1.html #objectives">B. Objectives of Internship</a>
+	<a href="Chapter1.html #timeplace">C. Time and Place</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER II -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="Chapter2.html">📁 Chapter II</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+      <a href="Chapter2.html#company">1. Nature of Agency</a>
+      <a href="Chapter2.html#org">2. Mission/Vision</a>
+	  <a href="Chapter2.html#org">3. Background of the Agency</a>
+	  <a href="Chapter2.html#org">4. Supervisor's Profile</a>
+	  <a href="Chapter2.html#org">5. Organizational Structure</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER III -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="Chapter3.html">📁 Chapter III</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="Chapter3.html#work">Weekly Reports</a>
+      <a href="Chapter3.html#skills">Daily Time Record</a>
+	  <a href="Chapter3.html#work">Internship Progress Report</a>
+      <a href="Chapter3.html#skills">Internship Analysis Report</a>
+    </div>
+  </div>
+  <!-- CHAPTER IV -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="Chapter4.html">📁 Chapter IV</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="Chapter4.html#work">A. Student InternshipEvaluation Form</a>
+    </div>
+  </div>
+  <div class="menu">
+  <a href="append.html" class="title-page">🔗 Appendices</a>
+</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="topbar" onclick="toggleSidebar()">☰</div>
+<section class="ojt">
+
+  <div class="ojt-images">
+	<img src="images/IT.jpg" class="small">
+    <img src="images/OM.jpg" class="big">
+    <img src="images/ARTS.jpg" class="small no-circle">
+  </div>
+</section>
+
+</div>
+
+<div class="content">
+  <div class="onjob-content">
+    <h1>ON-THE-JOB TRAINING</h1>
+    <p>COLLEGE OF TECHNOLOGY</p>
+  </div>
+  <section class="toc">
+    <h2>TABLE OF CONTENTS</h2>
+
+    <h3>FRONT MATTERS</h3>
+    <ul>
+      <li>Title Page</li>
+      <li>Acknowledgement</li>
+      <li>Table of Contents</li>
+      <li>Student Trainee Prayer</li>
+      <li>Personal Philosophy</li>
+      <li>Career Plan</li>
+    </ul>
+
+    <h3>CHAPTER I: INTRODUCTION</h3>
+    <ul>
+      <li>A. Importance of Internship</li>
+      <li>B. Objectives of Internship</li>
+      <li>C. Time and Place of Internship</li>
+    </ul>
+
+    <h3>CHAPTER II: COMPANY PROFILE</h3>
+    <ul>
+      <li>1. Nature of the Agency</li>
+      <li>2. Mission/Vision/Goal Statement</li>
+      <li>3. History/Background of the Agency/Office with Pictures</li>
+      <li>4. Organizational Structure</li>
+    </ul>
+
+    <h3>CHAPTER III: WORK EXPERIENCES</h3>
+    <ul>
+      <li>1. Weekly accomplishment report</li>
+      <li>2. Daily Time Record</li>
+      <li>3. Internship Progress Report</li>
+      <li>4. Internship Analysis Report</li>
+    </ul>
+
+    <h3>CHAPTER IV: ASSESSMENT</h3>
+    <ul>
+      <li>1. Student Internship Evaluation Form</li>
+    </ul>
+
+    <h3>APPENDICES</h3>
+<div class="appendix-grid">
+  <ul>
+    <li>A. Evaluation Form</li>
+    <li>B. Registration Form</li>
+    <li>C. Student ID</li>
+    <li>D. Parent's Consent</li>
+    <li>E. Medical Certificate</li>
+    <li>F. Good Moral Character</li>
+    <li>G. Application Letter</li>
+    <li>H. Endorsement Letter</li>
+    <li>I. Memorandum of Agreement</li>   
+  </ul>
+
+  <ul>
+	<li>J. Time Card (DTR)</li>
+    <li>K. Certificate of Completion</li>
+    <li>L. Certificate of Clearance</li>
+    <li>M. Performance Rating</li>
+    <li>N. Pre-service Seminar</li>
+    <li>O. Office Work Pictures</li>
+    <li>P. Code of Ethics</li>
+    <li>Q. Curriculum Vitae</li>
+    <li>R. Portfolio Evaluation Form</li>
+  </ul>
+</div>
+
+  </section>
+
+<section class="acknowledgement">
+  <h2>ACKNOWLEDGEMENT</h2>
+
+  <p>
+    I would like to express my sincere gratitude to all the people who supported me throughout my On-the-Job Training journey.
+  </p>
+
+  <p>
+    First and foremost, I thank God for giving me strength, guidance, and wisdom every day. Without His blessings, I would not have been able to complete this journey successfully.
+  </p>
+
+  <p>
+    I would also like to thank my supervisor and the staff at Villamar Law Office for giving me the opportunity to learn and gain experience in a professional environment. Their guidance, patience, and support helped me improve my skills, build confidence, and understand the responsibilities in a real workplace.
+  </p>
+
+  <p>
+    My heartfelt thanks also go to my instructors for their continuous guidance, encouragement, and valuable advice throughout my training. Their support inspired me to do my best and stay motivated.
+  </p>
+
+  <p>
+    Lastly, I am deeply grateful to my family and friends for their unwavering support, understanding, and motivation. They have always been there for me during challenges and have encouraged me to keep going.
+  </p>
+
+  <p>
+    Once again, thank you to everyone who became part of my OJT journey. Your support truly means a lot to me.
+  </p>
+</section>
+
+
+<section class="prayer">
+  <h2>PRAYER OF A STUDENT TRAINEE</h2>
+
+  <p><b>Dear God,</b></p>
+
+  <p>
+    Thank You for giving me the opportunity to learn and grow through my On-the-Job Training.
+    Thank You for guiding me each day and for the strength You give me to continue.
+  </p>
+
+  <p>
+    Please guide me in all my tasks and responsibilities, and help me to do my best in everything I do.
+    Give me patience, wisdom, and courage to face challenges, and help me learn from every experience.
+  </p>
+
+  <p>
+    Teach me to become responsible, hardworking, and respectful in my workplace.
+    May I always show a good attitude and bring honor to my school, my family, and to You.
+  </p>
+
+  <p>
+    Bless my supervisors, co-workers, and everyone who helps me along the way.
+    Continue to guide us and keep us safe always.
+  </p>
+
+  <p><b>Amen.</b></p>
+</section>
+
+
+<section class="philosophy">
+  <h2>PHILOSOPHY IN LIFE</h2>
+
+ <p class="highlight">
+  MY PHILOSOPHY IN LIFE IS TO STOP OVERTHINKING AND BEGIN DOING.
+</p>
+
+  <p>
+    I believe that success is achieved through consistency, discipline, and the courage to take action.
+    I see every challenge as a chance to learn and grow, and I always try to turn difficulties into motivation instead of fear.
+    For me, progress comes when I stop overthinking and start doing what needs to be done.
+  </p>
+
+  <p>
+    I also value honesty, perseverance, and humility because these qualities help me stay focused and grounded in everything I do.
+  </p>
+
+  <p>
+    I believe that true success is not only measured by achievements, but also by how much I improve as a person along the way.
+    Above all, I trust in God’s timing and guidance in my life journey.
+  </p>
+</section>
+
+<section class="career">
+  <h2>CAREER PLAN</h2>
+
+  <p>
+    In the future, my main goal is to finish my studies and find a stable job that can support my needs and help my family.
+  </p>
+
+  <p>
+    I am open to any opportunities that will help me grow—what is important for me is to have a decent job, earn honestly, and become independent.
+    If given the chance, I am also willing to work abroad to earn a higher income and save for my future.
+  </p>
+
+  <p>
+    In the long run, I plan to start my own business so I can have a stable and continuous source of income.
+    I want to build something that I can call my own and that can also help my family.
+  </p>
+
+  <p>
+    With determination and faith in God, I believe I can reach my dreams and have a better life.
+  </p>
+</section>
+
+
+
+<footer class="footer">
+  
+  <div class="footer-nav">
+    <h3>E-PORTFOLIO NAVIGATION</h3>
+
+    <div class="footer-links">
+      <div>
+        <span>01</span>
+        <p>Introduction</p>
+      </div>
+
+      <div>
+        <span>02</span>
+        <p>Company Profile</p>
+      </div>
+
+      <div>
+        <span>03</span>
+        <p>Work Experiences</p>
+      </div>
+
+      <div>
+        <span>04</span>
+        <p>Appendices</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 | Ivy Jill Vicente</p>
+    <p>BSIT Intern - Scholarship Office</p>
+  </div>
+
+</footer>
+</div>
+<script>
+document.querySelectorAll(".menu > a").forEach(item => {
+  item.addEventListener("click", function(e){
+    e.preventDefault(); // stop jump
+
+    let parent = this.parentElement;
+    parent.classList.toggle("active");
+  });
+});
+</script>
+<script>
+function toggleMenu(el){
+  el.closest(".menu").classList.toggle("active");
+}
+</script>
+<script>
+const modal = document.getElementById("modal");
+const sidebarProfile = document.getElementById("sidebarProfile");
+
+// OPEN MODAL kapag click profile sa sidebar
+sidebarProfile.addEventListener("click", function () {
+  modal.style.display = "flex";
+});
+
+// CLOSE BUTTON
+function closeModal(){
+  modal.style.display = "none";
+}
+
+// ENTER SITE BUTTON
+function enterSite(){
+  modal.style.display = "none";
+}
+
+// CLOSE kapag click outside modal
+window.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+});
+
+// SIDEBAR TOGGLE
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+</script>
+<script>
+function enterSite(){
+  document.getElementById("modal").style.display = "none";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+</script>
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".hero-bg");
+
+function changeSlide() {
+  slides.forEach(slide => slide.classList.remove("active"));
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}
+
+setInterval(changeSlide, 4000); // every 4 seconds
+</script>
+</body>
+</html>
