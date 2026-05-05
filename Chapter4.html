@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#e0f2fe,#f8fafc,#dbeafe);
+    color:#1e293b;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    background:
+        linear-gradient(rgba(15,23,42,0.55), rgba(15,23,42,0.55)),
+        url('images/bg.jpg') center/cover no-repeat;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1;
+}
+
+
+.topbar{
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:5;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  height:100%;
+  background:#f1f5f9;
+  padding:20px;
+  transition:.4s;
+  z-index:9999;
+  overflow-y:auto;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.profile{
+    text-align:center;
+    margin-bottom:35px;
+    padding-bottom:25px;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.profile img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    border:5px solid #3b82f6;
+    object-fit:cover;
+    box-shadow:0 10px 30px rgba(59,130,246,0.35);
+    margin-bottom:15px;
+}
+
+.profile h2{
+    font-size:1.5rem;
+    color:#0f172a;
+    margin-bottom:5px;
+}
+
+.profile p{
+    color:#64748b;
+    font-size:.95rem;
+}
+
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+}
+
+/* link style */
+.menu-header a{
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  flex:1;
+}
+/* arrow clickable area */
+.arrow{
+  cursor:pointer;
+  padding:0 10px;
+  user-select:none;
+}
+/* MENU */
+.menu > a{
+  display:block;
+  padding:10px;
+  text-decoration:none;
+  color:#333;
+}
+
+.menu > a:hover{
+  background:#3b82f6;
+  color:#fff;
+}
+
+.sub-menu{
+  display:none;
+  padding-left:20px;
+}
+
+.menu.active .sub-menu{
+  display:block;
+}
+
+.sub-menu a{
+  display:block;
+  padding:6px 10px;
+  font-size:14px;
+  text-decoration:none;
+  color:#333;
+}
+
+/* CLOSE BTN */
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:15px;
+  cursor:pointer;
+}
+/* =========================
+   SECTION STYLING
+========================= */
+/* SECTION */
+section{
+    position:relative;
+    z-index:2;
+    max-width:1150px;
+    width:92%;
+    margin:90px auto;
+    padding:70px 50px;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(18px);
+    border-radius:30px;
+    box-shadow:
+        0 20px 50px rgba(15,23,42,0.15),
+        0 5px 20px rgba(59,130,246,0.08);
+    border:1px solid rgba(255,255,255,0.7);
+}
+
+section:first-of-type{
+    margin-top:12vh;
+}
+
+/* =========================
+   CHAPTER CONTENT
+========================= */
+.chapter-section{
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.carousel{
+  position:relative;
+  width:300px;
+  height:450px;
+  margin:auto;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* images */
+.slide{
+  display:none;
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+  border-radius:15px;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.slide.active{
+  display:block;
+}
+
+/* buttons */
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+
+  background:rgba(0,0,0,0.5);
+  color:white;
+
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+
+  font-size:18px;
+  border-radius:50%;
+}
+
+.prev{
+  left:-15px;
+}
+
+.next{
+  right:-15px;
+}
+
+.nav:hover{
+  background:rgba(0,0,0,0.8);
+}
+.section-title{
+    text-align:center;
+    font-size:2rem;
+    color:#1d4ed8;
+    position:relative;
+    margin-bottom:40px;
+    letter-spacing:2px;
+}
+
+/* guhit sa baba */
+.section-title::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-12px;
+    transform:translateX(-50%);
+    width:120px;
+    height:5px;
+    border-radius:50px;
+    background:linear-gradient(90deg,#3b82f6,#06b6d4);
+}
+
+
+</style>
+</head>
+
+<body>
+<!-- HERO -->
+<div class="hero">
+  <div class="topbar" onclick="toggleSidebar()">☰</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+
+  <div class="profile">
+    <img src="images/dp.jpg" alt="Profile Picture" id="sidebarProfile">
+    <h2>Ivy Jill Vicente</h2>
+    <p>BSIT Student Intern</p>
+  </div>
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+<!-- TITLE PAGE ONLY -->
+<div class="menu">
+  <a href="index.html" class="title-page">🏠 Title Page</a>
+</div>
+  <!-- CHAPTER I -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+	<a href="chapter1.html #importance">A. Importance of Internship</a>
+	<a href="chapter1.html #objectives">B. Objectives of Internship</a>
+	<a href="chapter1.html #timeplace">C. Time and Place</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER II -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter2.html">📁 Chapter II</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+      <a href="chapter2.html#company">1. Nature of Agency</a>
+      <a href="chapter2.html#MVG">2. Mission/Vision/Goals</a>
+	  <a href="chapter2.html#History">3. History / Background</a>
+	  <a href="chapter2.html#org">4.Organizational Structure</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER III -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="chapter3.html">📁 Chapter III</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="chapter3.html#work">Weekly Reports</a>
+      <a href="chapter3.html#skills">Daily Time Record</a>
+	  <a href="chapter3.html#work">Internship Progress Report</a>
+      <a href="chapter3.html#skills">Internship Analysis Report</a>
+    </div>
+  </div>
+  <!-- CHAPTER IV -->
+    <div class="menu">
+     <div class="menu-header">
+    <a href="chapter4.html">📁 Chapter IV</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+    <div class="sub-menu">
+      <a href="chapter4.html#work">A. Student Internship Evaluation Form</a>
+    </div>
+  </div>
+  <div class="menu">
+  <a href="append.html" class="title-page">🔗 Appendices</a>
+</div>
+</div>
+
+<section class="chapter-section" id="org">
+
+    <div class="content-container">
+	<center><h1>CHAPTER IV</h1>	</center>
+        <h2 class="section-title">A. Student Internship Evaluation Form</h2>
+<div class="objective-box">
+
+  <div class="carousel">
+
+    <button class="nav prev" onclick="changeSlide(-1)">❮</button>
+
+    <img src="images/a.jpg" class="slide active" alt="Image 1">
+    <img src="images/b.jpg" class="slide" alt="Image 2">
+    <img src="images/c.jpg" class="slide" alt="Image 3">
+
+    <button class="nav next" onclick="changeSlide(1)">❯</button>
+
+  </div>
+
+</div>
+        </div>
+    </div>
+</section>
+
+
+
+
+</div>
+
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+document.querySelectorAll(".menu > a").forEach(item=>{
+  item.addEventListener("click", function(e){
+    let parent = this.parentElement;
+    parent.classList.toggle("active");
+  });
+});
+</script>
+<script>
+function toggleMenu(el){
+  el.closest(".menu").classList.toggle("active");
+}
+</script>
+<script>
+function toggleContent(id) {
+    const content = document.getElementById(id);
+
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
+}
+</script>
+<script>
+let currentIndex = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index){
+  slides.forEach(slide => slide.classList.remove("active"));
+
+  if(index >= slides.length){
+    currentIndex = 0;
+  } else if(index < 0){
+    currentIndex = slides.length - 1;
+  } else {
+    currentIndex = index;
+  }
+
+  slides[currentIndex].classList.add("active");
+}
+
+function changeSlide(direction){
+  showSlide(currentIndex + direction);
+}
+</script>
+</body>
+</html> 
