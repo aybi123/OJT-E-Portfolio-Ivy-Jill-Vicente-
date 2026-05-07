@@ -36,7 +36,6 @@ body{
 }
 
 
-
 .topbar{
   position:absolute;
   top:20px;
@@ -93,6 +92,7 @@ body{
     color:#64748b;
     font-size:.95rem;
 }
+
 .menu-header{
   display:flex;
   justify-content:space-between;
@@ -174,6 +174,9 @@ section:first-of-type{
     margin-top:12vh;
 }
 
+/* =========================
+   CHAPTER CONTENT
+========================= */
 .chapter-section{
     animation:fadeUp .8s ease;
 }
@@ -226,120 +229,77 @@ section:first-of-type{
     margin:0 auto 45px;
 }
 
-/* SKILLS */
-.skills-container{
-    max-width:850px;
-    margin:0 auto;
+.objective-box {
+    position: relative;
+    margin : 20px;
+    padding: 25px 30px;
+
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    /* colored left border */
+    border-left: 6px solid #2575fc;
 }
 
-.skill-item{
-    margin-bottom:18px;
+/* optional hover effect (nice touch) */
+.objective-box:hover {
+    transform: translateY(-3px);
+    transition: 0.3s ease;
 }
 
-.skill-btn{
+.slider img{
     width:100%;
-    padding:18px 25px;
-    border:none;
-    border-radius:18px;
-    background:linear-gradient(135deg,#2563eb,#06b6d4);
-    color:#fff;
-    font-size:1.05rem;
-    text-align:left;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:0 10px 25px rgba(37,99,235,0.25);
+    flex-shrink:0;
+    border-radius:15px;
+}
+/* =========================
+   IMAGE SLIDER
+========================= */
+.slider-container{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+    overflow:hidden;
+    border-radius:15px;
 }
 
-.skill-btn:hover{
-    transform:translateY(-4px);
+.slider{
+    display:flex;
+    transition:transform 0.5s ease-in-out;
 }
 
-.skill-content{
-    display:none;
-    margin-top:10px;
-    padding:22px 25px;
-    background:#f8fafc;
-    border-left:5px solid #2563eb;
-    border-radius:0 0 18px 18px;
-    color:#475569;
-    line-height:1.8;
-    animation:fadeDown .4s ease;
+.slider img{
+    width:100%;
+    flex-shrink:0;
+    border-radius:15px;
 }
 
-/* OBJECTIVE BOX */
-.objective-box{
-    margin:20px auto;
-    padding:28px 30px;
-    background:#ffffff;
-    border-radius:22px;
-    border-left:6px solid #2563eb;
-    box-shadow:0 12px 30px rgba(0,0,0,0.08);
-    font-size:1.1rem;
-    line-height:1.8;
-    color:#334155;
-    transition:.3s;
-}
-
-.objective-box:hover{
-    transform:translateY(-6px);
-    box-shadow:0 20px 35px rgba(37,99,235,0.15);
-}
-
-/* SCHEDULE */
-.schedule-title{
-    font-size:1.5rem;
-    font-weight:700;
-    color:#1d4ed8;
-    margin-bottom:18px;
-}
-
-.schedule-day{
-    font-size:1.1rem;
-    color:#475569;
+/* DOTS */
+.dots{
+    text-align:center;
     margin-top:15px;
 }
 
-.schedule-time{
-    font-size:1.4rem;
-    font-weight:700;
-    color:#0f172a;
-    margin-top:8px;
+.dot{
+    height:12px;
+    width:12px;
+    margin:0 5px;
+    background:#cbd5e1;
+    border-radius:50%;
+    display:inline-block;
+    cursor:pointer;
+    transition:.3s;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-    section{
-        padding:50px 25px;
-        width:95%;
-    }
-
-    .sidebar{
-        width:290px;
-        left:-290px;
-    }
-
-    .content-container h1{
-        font-size:2rem;
-        letter-spacing:1px;
-    }
-
-    .content-container h2{
-        font-size:1.5rem;
-    }
-
-    .content-container p{
-        font-size:1rem;
-        line-height:1.8;
-    }
-
-    .skill-btn{
-        font-size:1rem;
-        padding:16px 20px;
-    }
-
-    .objective-box{
-        padding:22px;
-    }
+.dot.active{
+    background:#3b82f6;
+    transform:scale(1.2);
 }
 </style>
 </head>
@@ -363,6 +323,21 @@ section:first-of-type{
 <div class="menu">
   <a href="index.html" class="title-page">🏠 Title Page</a>
 </div>
+  <!-- CHAPTER I -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="Chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+	<a href="Chapter1.html#importance">A. Importance of Internship</a>
+	<a href="Chapter1.html#objectives">B. Objectives of Internship</a>
+	<a href="Chapter1.html#timeplace">C. Time and Place</a>
+    </div>
+  </div>
+
   <!-- CHAPTER I -->
   <div class="menu">
      <div class="menu-header">
@@ -424,104 +399,284 @@ section:first-of-type{
 </div>
 </div>
 
-<section class="chapter-section" id="importance">
+<section class="chapter-section">
+<center><h1>APPENDICES</h1></center>
     <div class="content-container">
-        <h1>CHAPTER I - INTRODUCTION</h1>
-        <h2>A. IMPORTANCE OF INTERNSHIP</h2>
+        <h2>Official Documents</h2>
 
-        <p>
-            The importance of internship is to provide students with actual experience in a real work environment related to their chosen field. Through my internship at the Scholarship Office, I was able to gain valuable knowledge, practical skills, and professional experience that enhanced my understanding of office operations and student services. It allowed me to apply the theories and concepts I learned in school to actual workplace situations.
-            <br><br>
-            During my training, I assisted in organizing scholarship records, processing documents, accommodating student inquiries, and supporting the daily operations of the office. This experience helped me understand the importance of accuracy, confidentiality, and excellent customer service when dealing with students and scholarship-related concerns.
-        </p>
-
-	<div class="skills-container">
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('responsibility')">
-            ▼ Responsibility
-        </button>
-        <div id="responsibility" class="skill-content">
-            Completing assigned tasks accurately and on time.
-        </div>
     </div>
+</section>
 
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('detail')">
-            ▼ Attention to Detail
-        </button>
-        <div id="detail" class="skill-content">
-            Carefully reviewing and organizing scholarship documents and records.
-        </div>
-    </div>
+<!-- =========================
+APPENDIX A
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix A. Evaluation Form</h2>
 
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('communication')">
-            ▼ Communication
-        </button>
-        <div id="communication" class="skill-content">
-            Assisting students and communicating effectively with office staff.
-        </div>
-    </div>
+        <div class="objective-box">
 
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('administrative')">
-            ▼ Administrative Skills
-        </button>
-        <div id="administrative" class="skill-content">
-            Performing clerical tasks, filing documents, and managing office records efficiently.
-               </div>
+            <div class="slider-container">
+                <div class="slider" id="sliderA">
+                    <img src="images/accom.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderA',this)"></span>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
-<section class="chapter-section" id="objectives">
+
+<!-- =========================
+APPENDIX B
+========================= -->
+<section class="chapter-section">
     <div class="content-container">
+        <h2>Appendix B. Registration Form</h2>
 
-        <h2>B. OBJECTIVES OF INTERNSHIP</h2>
+        <div class="objective-box">
 
-<div class="objective-box">📌 Understand the basic operations of the scholarship office.</div>
+            <div class="slider-container">
 
-<div class="objective-box">📂 Assist in document processing and filing.</div>
+                <div class="slider" id="sliderB">
+                    <img src="images/dtr.jpg" alt="" class="org-image">
+                    <img src="images/dtr1.jpg" alt="" class="org-image">
+                </div>
 
-<div class="objective-box">💻 Develop data encoding and record-keeping skills.</div>
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderB',this)"></span>
 
-<div class="objective-box">🗣️ Improve communication skills with clients and applicants.</div>
+                    <span class="dot"
+                    onclick="moveSlide(1,'sliderB',this)"></span>
+                </div>
 
-<div class="objective-box">⏱️ Enhance time management and multitasking skills.</div>
+            </div>
 
+        </div>
     </div>
 </section>
 
-<section class="chapter-section" id="timeplace">
+<!-- =========================
+APPENDIX C
+========================= -->
+<section class="chapter-section">
     <div class="content-container">
+        <h2>Appendix C. Student ID</h2>
 
-        <h2>C. TIME AND PLACE</h2>
+        <div class="objective-box">
 
-		<div class="objective-box">
-			<div class="schedule-title">🗓️ Schedule</div>
+            <div class="slider-container">
+                <div class="slider" id="sliderC">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
 
-			<div class="schedule-day">Monday</div>
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderC',this)"></span>
+                </div>
+            </div>
 
-			<div class="schedule-time">7:00 AM – 6:00 PM</div>
-			
-			
-			<div class="schedule-day">Tuesday to Friday</div>
-
-			<div class="schedule-time">7:30 AM – 6:30 PM</div>
-		</div>
-				<div class="objective-box">
-			<div class="schedule-title">📍Location</div>
-			<div class="schedule-time">Scholarship Office</div>
-			<div class="schedule-day">OMSC San Jose Campus</div>			
-			<div class="schedule-day"> Rizal St., San Jose, Occidental Mindoro</div>
-		</div>
-	</div>		
+        </div>
+    </div>
 </section>
 
+<!-- =========================
+APPENDIX D
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix D. Parent's Consent</h2>
 
+        <div class="objective-box">
 
+            <div class="slider-container">
+                <div class="slider" id="sliderD">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
 
-</div>
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderD',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX E
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix E. Medical Certificate</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderE">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderE',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX F
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix F. Certificate of Good Moral</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderF">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderF',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX G
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix G. Application Letter</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderG">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderG',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX H
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix H. Endorsement Letter</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderH">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderH',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX I
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix I. Date Time Record (DTR)</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderI">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderI',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX J
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix J. Certificate of Completion</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderJ">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderJ',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+APPENDIX K
+========================= -->
+<section class="chapter-section">
+    <div class="content-container">
+        <h2>Appendix K. Certificate of Clearance</h2>
+
+        <div class="objective-box">
+
+            <div class="slider-container">
+                <div class="slider" id="sliderK">
+                    <img src="images/progress.jpg" alt="" class="org-image">
+                </div>
+
+                <div class="dots">
+                    <span class="dot active"
+                    onclick="moveSlide(0,'sliderK',this)"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 
 <script>
 function toggleSidebar(){
@@ -551,5 +706,19 @@ function toggleContent(id) {
     }
 }
 </script>
+<script>
+function moveSlide(index, sliderId, el){
+
+    const slider = document.getElementById(sliderId);
+
+    slider.style.transform = `translateX(-${index * 100}%)`;
+
+    const dots = el.parentElement.querySelectorAll(".dot");
+
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    el.classList.add("active");
+}
+</script>
 </body>
-</html>
+</html> 
