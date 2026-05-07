@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -36,48 +35,35 @@ body{
     z-index:1;
 }
 
+
+
 .topbar{
-    position:fixed;
-    top:25px;
-    left:25px;
-    z-index:10000;
-    color:#fff;
-    font-size:32px;
-    cursor:pointer;
-    background:rgba(255,255,255,0.15);
-    width:55px;
-    height:55px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:18px;
-    backdrop-filter:blur(12px);
-    box-shadow:0 8px 25px rgba(0,0,0,0.25);
-    transition:.3s;
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:5;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
 }
 
-.topbar:hover{
-    transform:scale(1.08);
-    background:rgba(255,255,255,0.25);
-}
 
 /* SIDEBAR */
 .sidebar{
-    position:fixed;
-    top:0;
-    left:-320px;
-    width:320px;
-    height:100%;
-    background:linear-gradient(180deg,#ffffff,#f8fafc);
-    padding:25px;
-    transition:.4s ease;
-    z-index:9999;
-    overflow-y:auto;
-    box-shadow:10px 0 40px rgba(0,0,0,0.15);
+  position:fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  height:100%;
+  background:#f1f5f9;
+  padding:20px;
+  transition:.4s;
+  z-index:9999;
+  overflow-y:auto;
 }
 
 .sidebar.active{
-    left:0;
+  left:0;
 }
 
 .profile{
@@ -107,102 +93,66 @@ body{
     color:#64748b;
     font-size:.95rem;
 }
-
-.close-btn{
-    position:absolute;
-    top:18px;
-    right:20px;
-    font-size:22px;
-    cursor:pointer;
-    color:#475569;
-    transition:.3s;
-}
-
-.close-btn:hover{
-    color:#ef4444;
-    transform:rotate(90deg);
-}
-
-.menu{
-    margin-bottom:12px;
-    border-radius:16px;
-    overflow:hidden;
-    background:#ffffff;
-    box-shadow:0 4px 15px rgba(0,0,0,0.05);
-}
-
 .menu-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
 }
 
-.menu-header a,
-.menu > a{
-    flex:1;
-    padding:16px 18px;
-    text-decoration:none;
-    color:#1e293b;
-    font-weight:500;
-    transition:.3s;
+/* link style */
+.menu-header a{
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  flex:1;
 }
-
-.menu-header a:hover,
-.menu > a:hover{
-    background:#3b82f6;
-    color:#fff;
-}
-
+/* arrow clickable area */
 .arrow{
-    padding:16px 20px;
-    cursor:pointer;
-    color:#3b82f6;
-    font-size:18px;
-    transition:.3s;
-    user-select:none;
+  cursor:pointer;
+  padding:0 10px;
+  user-select:none;
+}
+/* MENU */
+.menu > a{
+  display:block;
+  padding:10px;
+  text-decoration:none;
+  color:#333;
 }
 
-.menu.active .arrow{
-    transform:rotate(180deg);
+.menu > a:hover{
+  background:#3b82f6;
+  color:#fff;
 }
 
 .sub-menu{
-    display:none;
-    background:#f8fafc;
+  display:none;
+  padding-left:20px;
 }
 
 .menu.active .sub-menu{
-    display:block;
-    animation:fadeDown .4s ease;
+  display:block;
 }
 
 .sub-menu a{
-    display:block;
-    padding:13px 25px;
-    text-decoration:none;
-    color:#475569;
-    font-size:.95rem;
-    transition:.3s;
-    border-top:1px solid #e2e8f0;
+  display:block;
+  padding:6px 10px;
+  font-size:14px;
+  text-decoration:none;
+  color:#333;
 }
 
-.sub-menu a:hover{
-    background:#dbeafe;
-    color:#1d4ed8;
-    padding-left:35px;
+/* CLOSE BTN */
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:15px;
+  cursor:pointer;
 }
-
-@keyframes fadeDown{
-    from{
-        opacity:0;
-        transform:translateY(-10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
+/* =========================
+   SECTION STYLING
+========================= */
 /* SECTION */
 section{
     position:relative;
@@ -391,7 +341,6 @@ section:first-of-type{
         padding:22px;
     }
 }
-
 </style>
 </head>
 
@@ -417,57 +366,57 @@ section:first-of-type{
   <!-- CHAPTER I -->
   <div class="menu">
      <div class="menu-header">
-    <a href="chapter1.html">📁 Chapter I</a>
+    <a href="Chapter1.html">📁 Chapter I</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
   
     <div class="sub-menu">
-	<a href="chapter1.html #importance">A. Importance of Internship</a>
-	<a href="chapter1.html #objectives">B. Objectives of Internship</a>
-	<a href="chapter1.html #timeplace">C. Time and Place</a>
+	<a href="Chapter1.html#importance">A. Importance of Internship</a>
+	<a href="Chapter1.html#objectives">B. Objectives of Internship</a>
+	<a href="Chapter1.html#timeplace">C. Time and Place</a>
     </div>
   </div>
 
   <!-- CHAPTER II -->
     <div class="menu">
      <div class="menu-header">
-    <a href="chapter2.html">📁 Chapter II</a>
+    <a href="Chapter2.html">📁 Chapter II</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
   
     <div class="sub-menu">
-      <a href="chapter2.html#company">1. Nature of Agency</a>
-      <a href="chapter2.html#MVG">2. Mission/Vision/Goals</a>
-	  <a href="chapter2.html#History">3. History / Background</a>
-	  <a href="chapter2.html#org">4.Organizational Structure</a>
+      <a href="Chapter2.html#company">1. Nature of Agency</a>
+      <a href="Chapter2.html#MVG">2. Mission/Vision/Goals</a>
+	  <a href="Chapter2.html#History">3. History / Background</a>
+	  <a href="Chapter2.html#org">4.Organizational Structure</a>
     </div>
   </div>
 
   <!-- CHAPTER III -->
   <div class="menu">
      <div class="menu-header">
-    <a href="chapter3.html">📁 Chapter III</a>
+    <a href="Chapter3.html">📁 Chapter III</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
     <div class="sub-menu">
-      <a href="chapter3.html#work">Weekly Reports</a>
-      <a href="chapter3.html#skills">Daily Time Record</a>
-	  <a href="chapter3.html#work">Internship Progress Report</a>
-      <a href="chapter3.html#skills">Internship Analysis Report</a>
+      <a href="Chapter3.html#accom">Weekly Reports</a>
+      <a href="Chapter3.html#dtr">Daily Time Record</a>
+	  <a href="Chapter3.html#progress">Internship Progress Report</a>
+      <a href="Chapter3.html#analysis">Internship Analysis Report</a>
     </div>
   </div>
   <!-- CHAPTER IV -->
     <div class="menu">
      <div class="menu-header">
-    <a href="chapter4.html">📁 Chapter IV</a>
+    <a href="Chapter4.html">📁 Chapter IV</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
     <div class="sub-menu">
-      <a href="chapter4.html#work">A. Student InternshipEvaluation Form</a>
+      <a href="Chapter4.html#eval">A. Student InternshipEvaluation Form</a>
     </div>
   </div>
   <div class="menu">
