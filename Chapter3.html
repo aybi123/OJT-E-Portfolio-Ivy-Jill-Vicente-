@@ -36,7 +36,6 @@ body{
 }
 
 
-
 .topbar{
   position:absolute;
   top:20px;
@@ -93,6 +92,7 @@ body{
     color:#64748b;
     font-size:.95rem;
 }
+
 .menu-header{
   display:flex;
   justify-content:space-between;
@@ -174,6 +174,9 @@ section:first-of-type{
     margin-top:12vh;
 }
 
+/* =========================
+   CHAPTER CONTENT
+========================= */
 .chapter-section{
     animation:fadeUp .8s ease;
 }
@@ -226,120 +229,38 @@ section:first-of-type{
     margin:0 auto 45px;
 }
 
-/* SKILLS */
-.skills-container{
-    max-width:850px;
-    margin:0 auto;
+.objective-box {
+    position: relative;
+    margin : 20px;
+    padding: 25px 30px;
+
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    /* colored left border */
+    border-left: 6px solid #2575fc;
 }
 
-.skill-item{
-    margin-bottom:18px;
+/* optional hover effect (nice touch) */
+.objective-box:hover {
+    transform: translateY(-3px);
+    transition: 0.3s ease;
 }
 
-.skill-btn{
-    width:100%;
-    padding:18px 25px;
-    border:none;
-    border-radius:18px;
-    background:linear-gradient(135deg,#2563eb,#06b6d4);
-    color:#fff;
-    font-size:1.05rem;
-    text-align:left;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:0 10px 25px rgba(37,99,235,0.25);
-}
-
-.skill-btn:hover{
-    transform:translateY(-4px);
-}
-
-.skill-content{
-    display:none;
-    margin-top:10px;
-    padding:22px 25px;
-    background:#f8fafc;
-    border-left:5px solid #2563eb;
-    border-radius:0 0 18px 18px;
-    color:#475569;
-    line-height:1.8;
-    animation:fadeDown .4s ease;
-}
-
-/* OBJECTIVE BOX */
-.objective-box{
-    margin:20px auto;
-    padding:28px 30px;
-    background:#ffffff;
-    border-radius:22px;
-    border-left:6px solid #2563eb;
-    box-shadow:0 12px 30px rgba(0,0,0,0.08);
-    font-size:1.1rem;
-    line-height:1.8;
-    color:#334155;
-    transition:.3s;
-}
-
-.objective-box:hover{
-    transform:translateY(-6px);
-    box-shadow:0 20px 35px rgba(37,99,235,0.15);
-}
-
-/* SCHEDULE */
-.schedule-title{
-    font-size:1.5rem;
-    font-weight:700;
-    color:#1d4ed8;
-    margin-bottom:18px;
-}
-
-.schedule-day{
-    font-size:1.1rem;
-    color:#475569;
-    margin-top:15px;
-}
-
-.schedule-time{
-    font-size:1.4rem;
-    font-weight:700;
-    color:#0f172a;
-    margin-top:8px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-    section{
-        padding:50px 25px;
-        width:95%;
-    }
-
-    .sidebar{
-        width:290px;
-        left:-290px;
-    }
-
-    .content-container h1{
-        font-size:2rem;
-        letter-spacing:1px;
-    }
-
-    .content-container h2{
-        font-size:1.5rem;
-    }
-
-    .content-container p{
-        font-size:1rem;
-        line-height:1.8;
-    }
-
-    .skill-btn{
-        font-size:1rem;
-        padding:16px 20px;
-    }
-
-    .objective-box{
-        padding:22px;
-    }
+.org-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 </style>
 </head>
@@ -366,58 +287,72 @@ section:first-of-type{
   <!-- CHAPTER I -->
   <div class="menu">
      <div class="menu-header">
-    <a href="chapter1.html">📁 Chapter I</a>
+    <a href="Chapter1.html">📁 Chapter I</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
   
     <div class="sub-menu">
-	<a href="chapter1.html #importance">A. Importance of Internship</a>
-	<a href="chapter1.html #objectives">B. Objectives of Internship</a>
-	<a href="chapter1.html #timeplace">C. Time and Place</a>
+	<a href="Chapter1.html#importance">A. Importance of Internship</a>
+	<a href="Chapter1.html#objectives">B. Objectives of Internship</a>
+	<a href="Chapter1.html#timeplace">C. Time and Place</a>
+    </div>
+  </div>
+
+  <!-- CHAPTER I -->
+  <div class="menu">
+     <div class="menu-header">
+    <a href="Chapter1.html">📁 Chapter I</a>
+			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
+    <span class="arrow" onclick="toggleMenu(this)">▾</span>
+  </div>
+  
+    <div class="sub-menu">
+	<a href="Chapter1.html#importance">A. Importance of Internship</a>
+	<a href="Chapter1.html#objectives">B. Objectives of Internship</a>
+	<a href="Chapter1.html#timeplace">C. Time and Place</a>
     </div>
   </div>
 
   <!-- CHAPTER II -->
     <div class="menu">
      <div class="menu-header">
-    <a href="chapter2.html">📁 Chapter II</a>
+    <a href="Chapter2.html">📁 Chapter II</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
   
     <div class="sub-menu">
-      <a href="chapter2.html#company">1. Nature of Agency</a>
-      <a href="chapter2.html#org">2. Mission/Vision</a>
-	  <a href="chapter2.html#org">3. Background of the Agency</a>
-	  <a href="chapter2.html#org">4. Supervisor's Profile</a>
-	  <a href="chapter2.html#org">5. Organizational Structure</a>
+      <a href="Chapter2.html#company">1. Nature of Agency</a>
+      <a href="Chapter2.html#MVG">2. Mission/Vision/Goals</a>
+	  <a href="Chapter2.html#History">3. History / Background</a>
+	  <a href="Chapter2.html#org">4.Organizational Structure</a>
     </div>
   </div>
 
   <!-- CHAPTER III -->
   <div class="menu">
      <div class="menu-header">
-    <a href="chapter3.html">📁 Chapter III</a>
+    <a href="Chapter3.html">📁 Chapter III</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
     <div class="sub-menu">
-      <a href="chapter3.html#work">Weekly Reports</a>
-      <a href="chapter3.html#skills">Daily Time Record</a>
-	  <a href="chapter3.html#work">Internship Progress Report</a>
-      <a href="chapter3.html#skills">Internship Analysis Report</a>
+      <a href="Chapter3.html#accom">Weekly Reports</a>
+      <a href="Chapter3.html#dtr">Daily Time Record</a>
+	  <a href="Chapter3.html#progress">Internship Progress Report</a>
+      <a href="Chapter3.html#analysis">Internship Analysis Report</a>
     </div>
   </div>
   <!-- CHAPTER IV -->
     <div class="menu">
      <div class="menu-header">
-    <a href="chapter4.html">📁 Chapter IV</a>
+    <a href="Chapter4.html">📁 Chapter IV</a>
 			<!-- TOGGLE BUTTON (CLICK = DROP DOWN) -->
     <span class="arrow" onclick="toggleMenu(this)">▾</span>
   </div>
     <div class="sub-menu">
-      <a href="chapter4.html#work">A. Student InternshipEvaluation Form</a>
+      <a href="Chapter4.html#eval">A. Student InternshipEvaluation Form</a>
     </div>
   </div>
   <div class="menu">
@@ -425,100 +360,56 @@ section:first-of-type{
 </div>
 </div>
 
-<section class="chapter-section" id="importance">
+
+<section class="chapter-section" id="accom">
+<center><h1>CHAPTER III - Work Experience</h1></center>
     <div class="content-container">
-        <h1>CHAPTER III - INTRODUCTION</h1>
-        <h2>A. IMPORTANCE OF INTERNSHIP</h2>
+        <h2>Weekly Accomplishment Report</h2>
 
-        <p>
-            The importance of internship is to provide students with actual experience in a real work environment related to their chosen field. Through my internship at the Scholarship Office, I was able to gain valuable knowledge, practical skills, and professional experience that enhanced my understanding of office operations and student services. It allowed me to apply the theories and concepts I learned in school to actual workplace situations.
-            <br><br>
-            During my training, I assisted in organizing scholarship records, processing documents, accommodating student inquiries, and supporting the daily operations of the office. This experience helped me understand the importance of accuracy, confidentiality, and excellent customer service when dealing with students and scholarship-related concerns.
-        </p>
-
-	<div class="skills-container">
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('responsibility')">
-            ▼ Responsibility
-        </button>
-        <div id="responsibility" class="skill-content">
-            Completing assigned tasks accurately and on time.
-        </div>
-    </div>
-
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('detail')">
-            ▼ Attention to Detail
-        </button>
-        <div id="detail" class="skill-content">
-            Carefully reviewing and organizing scholarship documents and records.
-        </div>
-    </div>
-
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('communication')">
-            ▼ Communication
-        </button>
-        <div id="communication" class="skill-content">
-            Assisting students and communicating effectively with office staff.
-        </div>
-    </div>
-
-    <div class="skill-item">
-        <button class="skill-btn" onclick="toggleContent('administrative')">
-            ▼ Administrative Skills
-        </button>
-        <div id="administrative" class="skill-content">
-            Performing clerical tasks, filing documents, and managing office records efficiently.
-               </div>
-            </div>
+        <div class="objective-box">
+            <img src="images/accom.jpg" 
+                 alt="Organizational Structure" 
+                 class="org-image">
         </div>
     </div>
 </section>
-<section class="chapter-section" id="objectives">
+<section class="chapter-section" id="dtr">
     <div class="content-container">
+        <h2>Daily Time Record</h2>
 
-        <h2>B. OBJECTIVES OF INTERNSHIP</h2>
+        <div class="objective-box">
+            <img src="images/dtr.jpg" 
+                 alt="Daily Time Record Image 1" 
+                 class="org-image">
 
-<div class="objective-box">📌 Understand the basic operations of the scholarship office.</div>
-
-<div class="objective-box">📂 Assist in document processing and filing.</div>
-
-<div class="objective-box">💻 Develop data encoding and record-keeping skills.</div>
-
-<div class="objective-box">🗣️ Improve communication skills with clients and applicants.</div>
-
-<div class="objective-box">⏱️ Enhance time management and multitasking skills.</div>
-
+            <img src="images/dtr1.jpg" 
+                 alt="Daily Time Record Image 2" 
+                 class="org-image">
+        </div>
     </div>
 </section>
-
-<section class="chapter-section" id="timeplace">
+<section class="chapter-section" id="progress">
     <div class="content-container">
+        <h2>Internship Progress Report</h2>
 
-        <h2>C. TIME AND PLACE</h2>
-
-		<div class="objective-box">
-			<div class="schedule-title">🗓️ Schedule</div>
-
-			<div class="schedule-day">Monday</div>
-
-			<div class="schedule-time">7:00 AM – 6:00 PM</div>
-			
-			
-			<div class="schedule-day">Tuesday to Friday</div>
-
-			<div class="schedule-time">7:30 AM – 6:30 PM</div>
-		</div>
-				<div class="objective-box">
-			<div class="schedule-title">📍Location</div>
-			<div class="schedule-time">Scholarship Office</div>
-			<div class="schedule-day">OMSC San Jose Campus</div>			
-			<div class="schedule-day"> Rizal St., San Jose, Occidental Mindoro</div>
-		</div>
-	</div>		
+        <div class="objective-box">
+            <img src="images/progress.jpg" 
+                 alt="Organizational Structure" 
+                 class="org-image">
+        </div>
+    </div>
 </section>
+<section class="chapter-section" id="analysis">
+    <div class="content-container">
+        <h2>Internship Analysis Report</h2>
 
+        <div class="objective-box">
+            <img src="images/analysis.jpg" 
+                 alt="Organizational Structure" 
+                 class="org-image">
+        </div>
+    </div>
+</section>
 
 
 
@@ -553,4 +444,4 @@ function toggleContent(id) {
 }
 </script>
 </body>
-</html>
+</html> 
